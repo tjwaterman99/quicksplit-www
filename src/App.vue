@@ -1,26 +1,34 @@
 <template lang="pug">
 #app
-  img(src="./assets/logo.png")
-  hello-world(msg="Welcome to vue from pug!")
+  div(v-if="!$route.path.match('/dashboard')")
+    navbar
+    router-view
+  div(v-else).d-flex.dashboard
+    dashboard-navbar
+    router-view
+
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Navbar from './components/Navbar'
+import DashboardNavbar from './components/DashboardNavbar'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Navbar,
+    DashboardNavbar
   }
 }
 </script>
 
 <style lang="sass">
+html, body
+ height: 100%
+
 #app
-  font-family: Avenir, Helvetica, Arial, sans-serif
-  -webkit-font-smoothing: antialiased
-  -moz-osx-font-smoothing: grayscale
-  text-align: center
-  color: #2c3e50
-  margin-top: 60px
+  height: 100%
+
+.dashboard
+  min-height: 100%
 </style>

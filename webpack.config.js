@@ -2,7 +2,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.scss$/,
+        test: /\.s[ca]ss$/,
         use: [
           'vue-style-loader',
           'css-loader',
