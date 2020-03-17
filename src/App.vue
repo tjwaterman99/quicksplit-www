@@ -23,12 +23,21 @@ export default {
 </script>
 
 <style lang="sass">
+@import "@/assets/variables.scss"
+
 html, body
  height: 100%
+ background-color: $light
+ overflow-x: hidden
 
 #app
   height: 100%
+  background-color: $light
 
 .dashboard
   min-height: 100%
+
+.container-fluid
+  padding-left: 0px !important
+  padding-right: 0px !important
 </style>

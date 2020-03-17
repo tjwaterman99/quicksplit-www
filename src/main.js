@@ -5,10 +5,12 @@ import Dashboard from './routes/Dashboard.vue'
 import Home from './routes/Home.vue'
 import "./assets/styles.sass"
 import VueRouter from 'vue-router'
+import HowItWorksItem from './components/how-it-works/HowItWorksItem'
 
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(VueRouter)
+Vue.component("HowItWorksItem", HowItWorksItem)
 
 var routes = [
   {
