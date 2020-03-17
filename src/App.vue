@@ -3,7 +3,6 @@
   div(v-if="!$route.path.match('/dashboard')")
     navbar
     router-view
-    foot
 
   div(v-else).d-flex.dashboard
     dashboard-navbar

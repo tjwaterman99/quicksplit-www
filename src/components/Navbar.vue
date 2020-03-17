@@ -5,8 +5,7 @@
 			b-navbar-toggle(target="nav-collapse")
 			b-collapse#nav-collapse(is-nav)
 				b-navbar-nav
-					b-nav-item(href="/pricing") Pricing
-					b-nav-item(to="/dashboard") Dashboard
+					b-nav-item(to="/pricing") Pricing
 
 				b-navbar-nav.ml-auto
 					b-btn(variant="outline-primary" @click="signIn").mr-lg-2 Sign In
