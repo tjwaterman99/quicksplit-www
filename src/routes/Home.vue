@@ -29,25 +29,32 @@
 		.container
 			.row
 				.col-lg-6.offset-lg-3
-					h2.text-center Your data scientist will love you
+					h2.text-center Your data scientist will thank you
 		.container
 			.row
 				.col-lg-8.offset-lg-2
 					.row.justify-content-center.text-center
 							.testimonial-portrait.border.rounded-circle.mt-2
-							blockquote.blockquote.text-center
-								p.lead.text-secondary I used to spend hours helping product teams run A/B tests. Now I can focus more on Data Science, and less on writing pipelines
-								footer.blockquote-footer Tom Waterman, Data Scientist @ Facebook
+							.container
+								blockquote.blockquote.text-center
+									p.lead.text-secondary I used to spend hours helping product teams run A/B tests, but now Quick Split automates all the tedious work. No more data pipelines needed.
+									footer.blockquote-footer Tom Waterman, Data Scientist @ Facebook
 
 	.container-fluid.bg-light.section.pricing.border
 		.row
 			.col-lg-6.offset-lg-3
 				h2.text-center.text-dark Built for IC's. Scales for teams
 
-	.container-fluid.bg-light.section.call-to-action.border
+	.container-fluid.bg-light.section.call-to-action.border.pb-4
 		.row
 			.col-lg-8.offset-lg-2.text-center
-				h2 Get started today
+				h2 Get started for free
+				.container
+					.row
+						.col-sm-12.col-md-3.offset-md-3.mb-2
+							b-btn(variant="primary" block) Create an experiment
+						.col-sm-12.col-md-3.mb-2
+							b-btn(variant="outline-primary" block) Read the docs
 
 </template>
 
@@ -57,6 +64,7 @@ import exposures_image from "@/assets/images/how-it-works/log-exposures.png"
 import conversions_image from "@/assets/images/how-it-works/log-conversions.png"
 import get_results from "@/assets/images/how-it-works/get-results.png"
 import RoundTop from '@/components/svg/round-top.svg'
+
 
 export default {
 	name: "Home",
@@ -84,6 +92,9 @@ export default {
 	.testimonial-portrait
 		height: 10em
 		width: 10em
+		background-image: url("../assets/images/photo-tom-waterman.png")
+		background-size: cover
+		box-shadow: 0.2em 0.1em 0.5em
 
 .marquee
 	.jumbotron
