@@ -11,8 +11,9 @@
 					b-btn(variant="outline-primary" to="/login").mr-lg-2 Log In
 					b-btn(variant="primary" to="/register").text-light Register
 				b-navbar-nav.ml-auto(v-else)
-					b-btn(variant="outline-primary" @click="logOut").mr-lg-2 Log Out
-					b-btn(variant="primary").mr-lg-2 Dashboard
+					b-nav-item(@click="logOut").mr-lg-2 Log Out
+					b-nav-item.mr-lg-2.text-primary(to="/dashboard") Dashboard
+						b-icon-arrow-right
 
 </template>
 
