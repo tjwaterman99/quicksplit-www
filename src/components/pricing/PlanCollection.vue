@@ -20,20 +20,18 @@ export default {
 	},
 	data: function() {
 		return {
-			plans: [],
 			annual: true
 		}
 	},
 	methods: {
 		toggleAnnual: function() {
-			console.log("toggled")
 			this.annual = !this.annual
 		}
 	},
 	computed: {
 		selectedPlans: function() {
 			if (this.annual) {
-				return this.plans.filter(function(plan) {
+				return this.$root.plans.filter(function(plan) {
 					if (plan.name == "free" || !plan.self_serve) {
 						return true
 					} else {
@@ -41,7 +39,7 @@ export default {
 					}
 				})
 			} else {
-				return this.plans.filter(function(plan) {
+				return this.$root.plans.filter(function(plan) {
 					if (plan.name== "free" || !plan.self_serve) {
 						return true
 					} else {
@@ -50,15 +48,6 @@ export default {
 				})
 			}
 		}
-	},
-	created: function() {
-		console.log("created")
-		var that = this
-		this.$api.get('/plans').then(resp => {
-			that.plans = resp.data.data
-		}).catch(err => {
-			console.log(err)
-		})
 	}
 }
 </script>

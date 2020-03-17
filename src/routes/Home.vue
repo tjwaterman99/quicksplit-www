@@ -45,7 +45,7 @@
 			.col-lg-6.offset-lg-3
 				h2.text-center.text-dark Built for IC's. Scales for teams
 		.row
-			.col-lg-8.offset-lg-2
+			.col-lg-6.offset-lg-3
 				plan-collection
 
 	.container-fluid.bg-light.section.call-to-action.pb-4

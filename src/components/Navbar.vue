@@ -2,14 +2,17 @@
 	b-navbar(toggleable="lg" type="light" variant="light")
 		.container
 			b-navbar-brand(to="/") Quick Split
-			b-navbar-toggle(target="nav-collapse")
-			b-collapse#nav-collapse(is-nav)
+			b-navbar-toggle(target="nav-collapse", v-if="!$route.meta.focused")
+			b-collapse#nav-collapse(is-nav, v-if="!$route.meta.focused")
 				b-navbar-nav
 					b-nav-item(to="/pricing") Pricing
 
-				b-navbar-nav.ml-auto
-					b-btn(variant="outline-primary" @click="signIn").mr-lg-2 Sign In
-					b-btn(variant="primary" @click="signUp").text-light Sign Up
+				b-navbar-nav.ml-auto(v-if="!this.$root.loggedIn")
+					b-btn(variant="outline-primary" to="/login").mr-lg-2 Log In
+					b-btn(variant="primary").text-light Register
+				b-navbar-nav.ml-auto(v-else)
+					b-btn(variant="outline-primary" @click="logOut").mr-lg-2 Log Out
+					b-btn(variant="primary").mr-lg-2 Dashboard
 
 </template>
 
@@ -17,11 +20,11 @@
 export default {
 	name: "Navbar",
 	methods: {
-		signUp: function() {
-			console.log("Signing up")
-		},
-		signIn: function() {
-			console.log("Signing in")
+		logOut: function() {
+			console.log("Logging out")
+			this.$api.delete("/sessions").then( () => {
+				this.$root.user = undefined
+			})
 		}
 	}
 }

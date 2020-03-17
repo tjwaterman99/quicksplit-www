@@ -7,7 +7,7 @@ ul.plan-item.list-group.text-center.p-2
 	li.list-group-item.bg-white.border-0 {{ formatMaxActiveExperiments(plan) }}
 	li.list-group-item.bg-white.border-0
 		b-btn(variant="primary").btn-block.p-2
-			div(v-if="plan.name=='custom'") Contact Sales
+			div(v-if="plan.name=='custom'") Contact us
 			div(v-else-if="plan.name=='free'") Start for free
 			div(v-else="plan.name=='free'") Get started
 
@@ -20,9 +20,6 @@ export default {
 	props: {
 		plan: Object,
 		annual: Boolean
-	},
-	created: function() {
-		console.log(this.plan)
 	},
 	methods: {
 		formatPrice: function(plan) {

@@ -1,12 +1,12 @@
 <template lang="pug">
 #app
-  div(v-if="!$route.path.match('/dashboard')")
-    navbar
-    router-view
+	div(v-if="!$route.path.match('/dashboard')")
+		navbar
+		router-view
 
-  div(v-else).d-flex.dashboard
-    dashboard-navbar
-    router-view
+	div(v-else).d-flex.dashboard
+		dashboard-navbar
+		router-view
 
 </template>
 
@@ -16,12 +16,34 @@ import DashboardNavbar from './components/DashboardNavbar'
 import Foot from './components/Footer'
 
 export default {
-  name: 'App',
-  components: {
-    "Navbar":  Navbar,
-    "DashboardNavbar": DashboardNavbar,
-    "Foot": Foot
-  }
+	name: 'App',
+	components: {
+		"Navbar":  Navbar,
+		"DashboardNavbar": DashboardNavbar,
+		"Foot": Foot
+	},
+	created: function() {
+		this.loadUser();
+		this.loadPlans();
+	},
+	methods: {
+		loadUser: function() {
+			var that = this
+			this.$api.get('/user').then(resp => {
+				that.$root.user = resp.data.data
+			}).catch( () => {
+				that.$root.user = undefined
+			})
+		},
+		loadPlans: function() {
+			var that = this
+			this.$api.get('/plans').then(resp => {
+				that.$root.plans = resp.data.data
+			}).catch(err => {
+				console.log(err)
+			})
+		}
+	}
 }
 </script>
 
@@ -33,15 +55,14 @@ html, body
  background-color: $dark
  overflow-x: hidden
 
-
 #app
-  height: 100%
-  background-color: $light
+	height: 100%
+	background-color: $light
 
 .dashboard
-  min-height: 100%
+	min-height: 100%
 
 .container-fluid
-  padding-left: 0px !important
-  padding-right: 0px !important
+	padding-left: 0px !important
+	padding-right: 0px !important
 </style>
