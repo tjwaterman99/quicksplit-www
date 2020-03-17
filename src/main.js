@@ -5,6 +5,7 @@ import Dashboard from './routes/Dashboard.vue'
 import Home from './routes/Home.vue'
 import Pricing from './routes/Pricing.vue'
 import LogIn from './routes/LogIn.vue'
+import Register from './routes/Register.vue'
 import "./assets/styles.sass"
 import VueRouter from 'vue-router'
 import HowItWorksItem from './components/how-it-works/HowItWorksItem'
@@ -32,6 +33,13 @@ var routes = [
     path: '/login',
     component: LogIn,
     meta: {
+      focused: true
+    }
+  },
+  {
+    path: '/register',
+    component: Register,
+    meta:  {
       focused: true
     }
   }

@@ -9,7 +9,7 @@
 
 				b-navbar-nav.ml-auto(v-if="!this.$root.loggedIn")
 					b-btn(variant="outline-primary" to="/login").mr-lg-2 Log In
-					b-btn(variant="primary").text-light Register
+					b-btn(variant="primary" to="/register").text-light Register
 				b-navbar-nav.ml-auto(v-else)
 					b-btn(variant="outline-primary" @click="logOut").mr-lg-2 Log Out
 					b-btn(variant="primary").mr-lg-2 Dashboard
