@@ -3,6 +3,8 @@
   div(v-if="!$route.path.match('/dashboard')")
     navbar
     router-view
+    foot
+
   div(v-else).d-flex.dashboard
     dashboard-navbar
     router-view
@@ -12,12 +14,14 @@
 <script>
 import Navbar from './components/Navbar'
 import DashboardNavbar from './components/DashboardNavbar'
+import Foot from './components/Footer'
 
 export default {
   name: 'App',
   components: {
-    Navbar,
-    DashboardNavbar
+    "Navbar":  Navbar,
+    "DashboardNavbar": DashboardNavbar,
+    "Foot": Foot
   }
 }
 </script>
@@ -27,8 +31,9 @@ export default {
 
 html, body
  height: 100%
- background-color: $light
+ background-color: $dark
  overflow-x: hidden
+
 
 #app
   height: 100%
