@@ -23,7 +23,6 @@ export default {
 	name: "Navbar",
 	methods: {
 		logOut: function() {
-			console.log("Logging out")
 			this.$api.delete("/sessions").then( () => {
 				this.$root.user = undefined
 			})

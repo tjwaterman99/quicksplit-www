@@ -2,7 +2,9 @@
 #app
 	div(v-if="$route.path.match('/dashboard')").d-flex.dashboard
 		dashboard-navbar.dashboard-nav
-		router-view.flex-grow-1.px-4.py-2
+		div.flex-grow-1.px-4.py-2
+			b-alert(:show="$root.environment != 'production'") You're viewing {{ $root.environment }} data.
+			router-view
 
 	div(v-else-if="$route.path.match('/docs')").d-flex.docs
 		docs-navbar

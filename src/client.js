@@ -11,7 +11,12 @@ class Client {
 	}
 
 	get(route, data) {
-		return this.axios.get(route, data)
+		if (data === undefined) {
+			data = {environment: this.vm.environment}
+		} else  {
+			data.environment =  this.vm.environment
+		}
+		return this.axios.get(route, {params: data})
 	}
 
 	post(route, data) {

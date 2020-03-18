@@ -76,6 +76,7 @@ var vm = new Vue({
   render: h => h(App),
   data: {
     user: undefined,
+    environment: "production",
     plans: []
   },
   computed: {
@@ -83,6 +84,9 @@ var vm = new Vue({
       return !(this.user === undefined)
     }
   }
-}).$mount('#app')
+})
 
 window.quicksplit = vm
+api.vm = vm
+
+vm.$mount('#app')

@@ -34,7 +34,6 @@ export default {
 	methods: {
 		register: function(event) {
 			event.preventDefault()
-			console.log("Registering")
 			var that = this
 			this.$api.post('/user', {
 				email: this.form.email,

@@ -34,7 +34,6 @@ export default {
 	methods: {
 		logIn: function(event) {
 			event.preventDefault()
-			console.log("Logging in")
 			var that = this
 			this.$api.post('/sessions', {
 				email: this.form.email,

@@ -7,29 +7,35 @@
 </template>
 
 <script>
-import LogItem from '@/components/logs/LogItem'
 
 export default {
 	name: "DashboardLog",
-	components: {
-		'log-item': LogItem
-	},
 	data: function() {
 		return {
 			logs: [],
 			fields: ["last_seen_at", "subject", "experiment", "cohort", "type", "value", "id"]
 		}
 	},
+	computed: {
+		environment: function()  {
+			return this.$root.environment
+		}
+	},
 	methods: {
 		loadLogs: function() {
 			var that = this;
-			this.$api.get('/recent').then( resp => {
+			this.$api.get('/recent').then(resp => {
 				that.logs = resp.data.data
 			})
 		}
 	},
 	created: function() {
 		this.loadLogs()
+	},
+	watch: {
+		environment: function() {
+			this.loadLogs()
+		}
 	}
 }
 </script>
