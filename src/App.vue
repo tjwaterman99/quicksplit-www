@@ -2,7 +2,7 @@
 #app
 	div(v-if="$route.path.match('/dashboard')").d-flex.dashboard
 		dashboard-navbar.dashboard-nav
-		div.flex-grow-1.px-4.py-2
+		div.flex-grow-1.px-4.py-2.dashboard-body
 			b-alert(:show="$root.environment != 'production'") You're viewing {{ $root.environment }} data.
 			router-view
 
@@ -58,7 +58,7 @@ export default {
 
 html, body
  height: 100%
- background-color: $dark
+ background-color: $light
  overflow-x: hidden
 
 #app
@@ -71,6 +71,12 @@ html, body
 .dashboard-nav
 	min-width: 12em
 	max-width: 15%
+	max-height: 100%
+	min-height:  100%
+	position: fixed
+
+.dashboard-body
+	margin-left: 17%
 
 .docs
 	min-height: 100%
