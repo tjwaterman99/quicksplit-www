@@ -1,11 +1,16 @@
 <template lang="pug">
 #app
-	div(v-if="!$route.path.match('/dashboard')")
-		navbar
+	div(v-if="$route.path.match('/dashboard')").d-flex.dashboard
+		dashboard-navbar
 		router-view
 
-	div(v-else).d-flex.dashboard
-		dashboard-navbar
+	div(v-else-if="$route.path.match('/docs')").d-flex.docs
+		docs-navbar
+		router-view
+
+	div(v-else)
+		navbar
+
 		router-view
 
 </template>
@@ -13,14 +18,14 @@
 <script>
 import Navbar from './components/Navbar'
 import DashboardNavbar from './components/DashboardNavbar'
-import Foot from './components/Footer'
+import DocsNavbar from './components/DocsNavbar'
 
 export default {
 	name: 'App',
 	components: {
 		"Navbar":  Navbar,
 		"DashboardNavbar": DashboardNavbar,
-		"Foot": Foot
+		"DocsNavbar": DocsNavbar
 	},
 	created: function() {
 		this.loadUser();
@@ -60,6 +65,9 @@ html, body
 	background-color: $light
 
 .dashboard
+	min-height: 100%
+
+.docs
 	min-height: 100%
 
 .container-fluid

@@ -1,12 +1,16 @@
 import Vue from 'vue'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+
+import "./assets/styles.sass"
+
 import App from './App.vue'
 import Dashboard from './routes/Dashboard.vue'
 import Home from './routes/Home.vue'
 import Pricing from './routes/Pricing.vue'
 import LogIn from './routes/LogIn.vue'
 import Register from './routes/Register.vue'
-import "./assets/styles.sass"
+import Docs from './routes/Docs.vue'
+
 import VueRouter from 'vue-router'
 import HowItWorksItem from './components/how-it-works/HowItWorksItem'
 import Client from './client'
@@ -42,6 +46,10 @@ var routes = [
     meta:  {
       focused: true
     }
+  },
+  {
+    path: '/docs',
+    component: Docs
   }
 ]
 
