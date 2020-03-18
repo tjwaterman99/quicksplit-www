@@ -6,6 +6,7 @@ import "./assets/styles.sass"
 import App from './App.vue'
 import Dashboard from './routes/Dashboard.vue'
 import DashboardAccount from './routes/DashboardAccount.vue'
+import DashboardLogs from './routes/DashboardLogs.vue'
 import Home from './routes/Home.vue'
 import Pricing from './routes/Pricing.vue'
 import LogIn from './routes/LogIn.vue'
@@ -33,6 +34,10 @@ var routes = [
   {
     path: '/dashboard/account',
     component: DashboardAccount
+  },
+  {
+    path: '/dashboard/logs',
+    component: DashboardLogs
   },
   {
     path: '/pricing',
