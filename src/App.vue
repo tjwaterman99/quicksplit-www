@@ -1,8 +1,8 @@
 <template lang="pug">
 #app
 	div(v-if="$route.path.match('/dashboard')").d-flex.dashboard
-		dashboard-navbar
-		router-view
+		dashboard-navbar.dashboard-nav
+		router-view.flex-grow-1.px-4.py-2
 
 	div(v-else-if="$route.path.match('/docs')").d-flex.docs
 		docs-navbar
@@ -10,7 +10,6 @@
 
 	div(v-else)
 		navbar
-
 		router-view
 
 </template>
@@ -66,6 +65,10 @@ html, body
 
 .dashboard
 	min-height: 100%
+
+.dashboard-nav
+	min-width: 12em
+	max-width: 15%
 
 .docs
 	min-height: 100%

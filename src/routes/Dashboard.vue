@@ -1,5 +1,5 @@
 <template lang="pug">
-.dashboard-content.p-3
+.dashboard-content
 	h1 Dashboard
 </template>
 
