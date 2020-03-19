@@ -1,8 +1,10 @@
 <template lang="pug">
 	b-navbar(toggleable="lg" type="light" variant="light")
 		.container
-			b-navbar-brand(to="/") Quick Split
 			b-navbar-toggle(target="nav-collapse", v-if="!$route.meta.focused")
+			b-navbar-brand(to="/") quicksplit
+				img(src="/logo.svg" alt="quicksplit").logo
+
 			b-collapse#nav-collapse(is-nav, v-if="!$route.meta.focused")
 				b-navbar-nav
 					b-nav-item(to="/pricing") Pricing (add FAQ)
@@ -31,5 +33,8 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped=true>
+<style lang="sass" scoped=true>
+.logo
+	width: 2em
+	height: 2em
 </style>
