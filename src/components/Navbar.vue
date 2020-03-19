@@ -5,8 +5,8 @@
 			b-navbar-toggle(target="nav-collapse", v-if="!$route.meta.focused")
 			b-collapse#nav-collapse(is-nav, v-if="!$route.meta.focused")
 				b-navbar-nav
-					b-nav-item(to="/pricing") Pricing
-					b-nav-item(to="/docs") Docs
+					b-nav-item(to="/pricing") Pricing (add FAQ)
+					b-nav-item(to="/docs") Docs (to do)
 
 				b-navbar-nav.ml-auto(v-if="!this.$root.loggedIn")
 					b-btn(variant="outline-primary" to="/login").mr-lg-2 Log In
