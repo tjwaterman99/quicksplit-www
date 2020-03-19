@@ -1,15 +1,19 @@
 <template lang="pug">
 .home
-	.marquee
-		b-jumbotron(fluid=true, bg-variant="light")
-			template(v-slot:header)
-				span.text-dark Drive your product
-			template(v-slot:lead) Quick Split is the fastest, easiest way to run A/B tests on any of your products. You can A/B test a new feature in as little as 3 lines of code, without needing a data scientist.
+	.container
+		.marquee
 			.row
-				.col-sm-12.col-md-3.mb-2
-					b-btn(variant="primary" block) Create an experiment
-				.col-sm-12.col-md-3
-					b-btn(variant="outline-primary" block) Read the docs
+				.col-md-6.mb-4
+					h1.text-dark Drive your product
+					h5.mb-4 Quick Split is the fastest, easiest way to run A/B tests on any of your products. You can A/B test a new feature in as little as 3 lines of code, without needing a data scientist.
+					.row
+						.col-sm-12.col-md-5.mb-2
+							b-btn(variant="primary" block) Create an experiment
+						.col-sm-12.col-md-6
+							b-btn(variant="outline-primary" block) Read the docs
+				.col-md-6
+					.marquee-image.m-4
+						img(src="../assets/images/homepage-marquee-image.png")
 
 	.container-fluid.bg-light.section.how-it-works
 		.container
@@ -103,8 +107,14 @@ export default {
 		box-shadow: 0.2em 0.1em 0.5em
 
 .marquee
-	.jumbotron
-		margin-top: 2em
-		padding: 0
+	margin-top: 2em
+	padding-top: 2em
+	padding-bottom: 2em
+	height: 100%
+	width: 100%
+
+.marquee-image img
+	max-width: 100%
+
 
 </style>
