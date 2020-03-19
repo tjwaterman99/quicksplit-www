@@ -76,7 +76,7 @@ html, body
 	position: fixed
 
 .dashboard-body
-	margin-left: 17%
+	margin-left: 13em
 
 .docs
 	min-height: 100%
