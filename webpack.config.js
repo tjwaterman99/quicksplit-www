@@ -15,7 +15,7 @@ module.exports = {
           'babel-loader',
           'vue-svg-loader',
         ],
-      },
+      }
     ]
   }
 }
