@@ -7,7 +7,7 @@
 	side-navbar-item(to="/dashboard/account" text="Account" icon="person-fill").mb-auto
 	span.d-flex.justify-content-between.align-items-center.px-2
 		p.mr-4.p-1.text-white View staging data
-		b-form-checkbox(switch plain=true @change="toggleTestData").pb-3
+		b-form-checkbox(switch plain=true @change="toggleTestData" :checked="$root.environment!='production'").pb-3
 
 
 
