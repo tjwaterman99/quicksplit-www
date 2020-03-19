@@ -9,8 +9,6 @@
 		p.mr-4.p-1.text-white View staging data
 		b-form-checkbox(switch plain=true @change="toggleTestData" :checked="$root.environment!='production'").pb-3
 
-
-
 	side-navbar-item(to="/" text="Exit" icon="box-arrow-left")
 </template>
 

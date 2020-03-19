@@ -7,7 +7,7 @@
 			router-view
 
 	div(v-else-if="$route.path.match('/docs')").d-flex.docs
-		docs-navbar
+		docs-navbar.dashboard-nav
 		router-view
 
 	div(v-else)

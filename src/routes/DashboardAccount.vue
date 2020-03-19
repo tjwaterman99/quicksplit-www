@@ -17,6 +17,10 @@
 			b-form.mt-4
 				b-form-group(label="Email address")
 					b-form-input(type="email" :placeholder="$root.user.email" disabled)
+
+		b-tab(title="Payments" disabled)
+		b-tab()
+
 	b-spinner(v-else)
 
 </template>
