@@ -8,7 +8,8 @@
 
 	div(v-else-if="$route.path.match('/docs')").d-flex.docs
 		docs-navbar.dashboard-nav
-		router-view
+		div.flex-grow-1.px-4.py-2.docs-body
+			router-view
 
 	div(v-else)
 		navbar
@@ -70,7 +71,6 @@ html, body
 
 .dashboard-nav
 	min-width: 12em
-	max-width: 15%
 	max-height: 100%
 	min-height:  100%
 	position: fixed
@@ -80,6 +80,10 @@ html, body
 
 .docs
 	min-height: 100%
+
+.docs-body
+	margin-left: 13em
+	max-width: 40em
 
 .container-fluid
 	padding-left: 0px !important
