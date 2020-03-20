@@ -8,7 +8,6 @@
 
 <script>
 import Chartist from 'chartist';
-console.log(Chartist)
 
 export default {
   name: "ExposuresChart",

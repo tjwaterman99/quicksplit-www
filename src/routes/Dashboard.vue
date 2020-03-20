@@ -1,11 +1,11 @@
 <template lang="pug">
 .dashboard-content
-	.row.d-flex
+	.d-flex
 		h1.mb-4.mr-auto Experiments
-		b-button(variant="primary" @click="$router.push('/create/experiment')").mt-3.mb-4.mr-4 Create experiment
+		b-button(variant="primary" @click="$router.push('/create/experiment')").mt-3.mb-4 Create experiment
 	.experiment-tabs.d-flex.mb-2
-		experiment-summary(title="Active experiments" :value="numActiveExperiments").flex-fill
-		experiment-summary(title="Exposures (last 7 days)" :value="numRecentExposures").flex-fill
+		experiment-summary(title="Active experiments" :value="numActiveExperiments").flex-fill.mr-2
+		experiment-summary(title="Exposures (last 7 days)" :value="numRecentExposures").flex-fill.mr-2
 		experiment-summary(title="Conversions (last 7 days)" :value="numRecentConversions").flex-fill
 	exposures-chart(:summaries="exposuresSummary").mb-2
 	experiment-list(:experiments="experiments")

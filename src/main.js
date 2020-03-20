@@ -7,6 +7,7 @@ import App from './App.vue'
 import Dashboard from './routes/Dashboard.vue'
 import DashboardAccount from './routes/DashboardAccount.vue'
 import DashboardLogs from './routes/DashboardLogs.vue'
+import DashboardReports  from './routes/DashboardReports.vue'
 import Home from './routes/Home.vue'
 import Pricing from './routes/Pricing.vue'
 import LogIn from './routes/LogIn.vue'
@@ -14,6 +15,7 @@ import Register from './routes/Register.vue'
 import Docs from './routes/Docs.vue'
 import Create from './routes/Create.vue'
 import CreateExperiment from './components/forms/CreateExperiment.vue'
+import CreateReport from './components/forms/CreateReport.vue'
 
 import VueRouter from 'vue-router'
 import HowItWorksItem from './components/how-it-works/HowItWorksItem'
@@ -40,6 +42,10 @@ var routes = [
   {
     path: '/dashboard/logs',
     component: DashboardLogs
+  },
+  {
+    path: '/dashboard/reports',
+    component: DashboardReports
   },
   {
     path: '/pricing',
@@ -69,6 +75,13 @@ var routes = [
       {
         path: 'experiment',
         component: CreateExperiment,
+        meta: {
+          focused: true
+        }
+      },
+      {
+        path: 'report',
+        component: CreateReport,
         meta: {
           focused: true
         }

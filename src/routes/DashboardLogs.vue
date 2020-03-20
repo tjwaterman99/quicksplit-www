@@ -1,8 +1,8 @@
 <template lang="pug">
 .dashboard-log
-	.row.d-flex
+	.d-flex
 		h1.mb-4.mr-auto Recent events
-		b-button(variant="primary" @click="loadLogs").mt-3.mb-4.mr-4 Refresh
+		b-button(variant="primary" @click="loadLogs").mt-3.mb-4 Refresh
 	b-table(:items="logs" :fields="fields")
 
 </template>

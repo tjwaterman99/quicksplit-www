@@ -1,5 +1,5 @@
 <template lang="pug">
-.experiment-summary.p-2.mr-2.rounded.text-center
+.experiment-summary.p-2rounded.text-center
 	h2 {{ value }}
 	h5 {{ title }}
 </template>

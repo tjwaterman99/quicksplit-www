@@ -63,7 +63,7 @@ html, body
  overflow-x: hidden
 
 #app
-	height: 100%
+	min-height: 100%
 	background-color: $light
 
 .dashboard
