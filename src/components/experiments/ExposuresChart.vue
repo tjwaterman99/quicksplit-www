@@ -83,7 +83,8 @@ export default {
 @import "chartist/dist/scss/chartist.scss";
 
 .wrapper {
-  height: 15em;
+  height: 13em;
+  margin-top: 2em
 }
 
 .fill {
