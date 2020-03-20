@@ -8,8 +8,9 @@
 			span.experiment-data.experiment-subjects.flex-fill {{ experiment.subjects_counter }}  subjects
 			span.experiment-data.experiment-exposures.flex-fill {{ formatTimestamp(experiment.last_exposure_at) }}
 			b-btn(variant="outline-danger" v-if="experiment.active" @click="toggleActive(experiment)").experiment-data Stop
-			b-btn(variant="outline-primary" v-else @click="toggleActive(experiment)").experiment-data Start
-			b-link(to="/reports").experiment-data Results
+			b-btn(variant="outline-success" v-else @click="toggleActive(experiment)").experiment-data Start
+			b-link(to="/reports").experiment-data.experiment-results Results
+				b-icon-arrow-right.ml-2
 </template>
 
 <script>
@@ -27,7 +28,7 @@ export default {
 			}
 		},
 		toggleActive(experiment) {
-			this.$emit("toggle-active", experiment.id)
+			this.$parent.$emit("toggle-active", experiment)
 		}
 	}
 }
@@ -45,7 +46,10 @@ export default {
 	margin-right: 2em
 	max-width: 20%
 
-	&.active
-		color: $green
+.experiment-results
+	&:hover
 		font-weight: bold
+		text-decoration: none
+		color: $primary
+
 </style>

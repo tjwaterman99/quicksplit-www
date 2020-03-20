@@ -33,7 +33,7 @@ export default {
 			return this.$root.environment
 		},
 		numActiveExperiments: function() {
-			return this.experiments.length
+			return this.experiments.filter( experiment => experiment.active).length
 		},
 		numRecentExposures:  function() {
 			var values = this.exposuresSummary.map( es => es.exposures )
@@ -65,6 +65,20 @@ export default {
 		}
 	},
 	created: function() {
+		this.$on('toggle-active', (experiment) => {
+			var that = this;
+			var route
+			if (experiment.active) {
+				route = '/deactivate'
+			} else {
+				route = '/activate'
+			}
+			this.$api.post(route, {experiment: experiment.name}).then( resp => {
+				if (resp.data.status_code == 200) {
+					that.loadExperiments()
+				}
+			})
+		})
 		this.loadExperiments()
 		this.loadExposuresSummary()
 	},
