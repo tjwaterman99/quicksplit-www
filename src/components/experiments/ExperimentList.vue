@@ -8,7 +8,7 @@
 			span.experiment-data.experiment-subjects.flex-fill {{ experiment.subjects_counter }}  subjects
 			span.experiment-data.experiment-exposures.flex-fill {{ formatTimestamp(experiment.last_exposure_at) }}
 			b-btn(variant="outline-danger" v-if="experiment.active" @click="toggleActive(experiment)").experiment-data Stop
-			b-btn(variant="outline-success" v-else @click="toggleActive(experiment)").experiment-data Start
+			b-btn(variant="success" v-else @click="toggleActive(experiment)").experiment-data Start
 			b-link(to="/reports").experiment-data.experiment-results Results
 				b-icon-arrow-right.ml-2
 </template>
