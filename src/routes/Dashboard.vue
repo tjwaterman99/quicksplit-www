@@ -1,6 +1,8 @@
 <template lang="pug">
 .dashboard-content
-	h1.mb-4 Experiments
+	.row.d-flex
+		h1.mb-4.mr-auto Experiments
+		b-button(variant="primary" @click="$router.push('/create/experiment')").mt-3.mb-4.mr-4 Create experiment
 	.experiment-tabs.d-flex.mb-2
 		experiment-summary(title="Active experiments" :value="numActiveExperiments").flex-fill
 		experiment-summary(title="Exposures (last 7 days)" :value="numRecentExposures").flex-fill

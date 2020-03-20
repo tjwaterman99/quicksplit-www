@@ -13,7 +13,7 @@
 						b-form-input(type="password" v-model="form.password" required placeholder="Password")
 					b-btn(type="submit" variant="outline-primary" block) Log in
 		.row.mt-2(v-if="errors")
-			.col
+			.col-md-4.offset-md-4
 				b-alert(variant="danger" show).text-center {{ errors }}
 
 

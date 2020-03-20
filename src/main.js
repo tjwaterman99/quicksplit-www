@@ -12,6 +12,8 @@ import Pricing from './routes/Pricing.vue'
 import LogIn from './routes/LogIn.vue'
 import Register from './routes/Register.vue'
 import Docs from './routes/Docs.vue'
+import Create from './routes/Create.vue'
+import CreateExperiment from './components/forms/CreateExperiment.vue'
 
 import VueRouter from 'vue-router'
 import HowItWorksItem from './components/how-it-works/HowItWorksItem'
@@ -56,6 +58,22 @@ var routes = [
     meta:  {
       focused: true
     }
+  },
+  {
+    path: '/create',
+    component: Create,
+    meta: {
+      focused: true
+    },
+    children: [
+      {
+        path: 'experiment',
+        component: CreateExperiment,
+        meta: {
+          focused: true
+        }
+      }
+    ]
   },
   {
     path: '/docs',
