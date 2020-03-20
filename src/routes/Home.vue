@@ -8,9 +8,9 @@
 					h5.mb-4 Quick Split is the fastest, easiest way to run A/B tests on any of your products. You can A/B test a new feature in as little as 3 lines of code, without needing a data scientist.
 					.row
 						.col-sm-12.col-md-5.mb-2
-							b-btn(variant="primary" block) Create an experiment
+							b-btn(variant="primary" :to="ctaLink" block) Create an experiment
 						.col-sm-12.col-md-6
-							b-btn(variant="outline-primary" block) Read the docs
+							b-btn(variant="outline-primary" to="/docs" block) Read the docs
 				.col-md-6
 					.marquee-image.m-4
 						img(src="../assets/images/homepage-marquee-image.png")
@@ -85,6 +85,15 @@ export default {
 			exposures_image: exposures_image,
 			conversions_image: conversions_image,
 			get_results: get_results
+		}
+	},
+	computed: {
+		ctaLink: function() {
+			if (this.$root.loggedIn) {
+				return '/create/experiment'
+			} else {
+				return '/register'
+			}
 		}
 	}
 }
