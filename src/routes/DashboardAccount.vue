@@ -19,10 +19,16 @@
 					b-form-input(type="email" :placeholder="$root.user.email" disabled)
 
 		b-tab(title="Payments" disabled)
-		b-tab()
+
+		b-tab(title="Status")
+			div(v-if="status")
+				b-list-group
+					b-list-group-item.pt-4 Healthy: {{ this.status.healthy }}
+					b-list-group-item.pt-4 Version: {{ this.status.version.version }}
+					b-list-group-item.pt-4 Revision: {{ this.status.version.id }}
+
 
 	b-spinner(v-else)
-
 </template>
 
 <script>
@@ -30,10 +36,20 @@ import TokenItem from '@/components/tokens/TokenItem.vue'
 
 export default {
 	name: "DashboardAccount",
+	data: function() {
+		return {
+			status: {}
+		}
+	},
 	components: {
 		TokenItem: TokenItem
+	},
+	created: function() {
+		var that = this;
+		this.$api.get('/').then(resp => {
+			that.status = resp.data.data
+		})
 	}
-
 }
 </script>
 
