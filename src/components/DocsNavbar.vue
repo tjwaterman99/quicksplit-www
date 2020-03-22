@@ -1,6 +1,8 @@
 <template lang="pug">
 .dashboard-navbar.d-flex.flex-column.p-3.bg-secondary
 	side-navbar-item(to="/docs" text="Getting started" icon="house-fill" variant="secondary")
+	side-navbar-item(to="/docs/api-tokens" text="Experiment setup" icon="document-text" variant="secondary")
+	side-navbar-item(to="/docs/api-tokens" text="API authentication" icon="document-text" variant="secondary")
 	side-navbar-item(to="/docs/logging" text="Collecting data" icon="document-text" variant="secondary")
 	side-navbar-item(to="/docs/reports" text="Calculating results" icon="table" variant="secondary").mb-auto
 

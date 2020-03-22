@@ -11,6 +11,7 @@ import DashboardReports  from './routes/DashboardReports.vue'
 import ReportItem from './routes/ReportItem.vue'
 import Home from './routes/Home.vue'
 import Pricing from './routes/Pricing.vue'
+import Support from './routes/Support.vue'
 import LogIn from './routes/LogIn.vue'
 import Register from './routes/Register.vue'
 import Docs from './routes/Docs.vue'
@@ -31,6 +32,10 @@ var routes = [
   {
     path: '/',
     component: Home
+  },
+  {
+    path: '/support',
+    component: Support
   },
   {
     path: '/dashboard',
