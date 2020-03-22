@@ -1,7 +1,7 @@
 <template lang="pug">
 .experiment-list.p-2.mt-4
 	b-list-group.experiment-list
-		b-list-group-item(v-for="experiment in experiments" :key="experiment.id").d-flex.align-items-center.text-left.experiment-item
+		b-list-group-item(v-for="experiment in experiments" :key="experiment.id").d-flex.align-items-center.text-left.experiment-item.border-0.my-1
 			span(:class={'active': "experiment.active"}).experiment-data.experiment-name.flex-fill
 				span {{ experiment.name  }}
 				b-badge(pill variant="success" size="sm" v-if="experiment.active").ml-2 Active
@@ -38,9 +38,6 @@ export default {
 @import "@/assets/variables"
 @import "~bootstrap"
 
-.experiment-item
-	border: 1px
-	margin: 0.1em
 
 .experiment-data
 	margin-right: 2em

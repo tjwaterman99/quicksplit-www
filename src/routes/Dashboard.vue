@@ -9,7 +9,6 @@
 		experiment-summary(title="Conversions (last 7 days)" :value="numRecentConversions").flex-fill
 	exposures-chart(:summaries="exposuresSummary").mb-2
 	experiment-list(:experiments="experiments")
-
 </template>
 
 <script>
@@ -21,7 +20,6 @@ export default {
 	name: "Dashboard",
 	data: function() {
 		return {
-			experiments: [],
 			exposuresSummary: []
 		}
 	},
@@ -33,6 +31,9 @@ export default {
 	computed: {
 		environment: function()  {
 			return this.$root.environment
+		},
+		experiments: function() {
+			return this.$root.experiments
 		},
 		numActiveExperiments: function() {
 			return this.experiments.filter( experiment => experiment.active).length
@@ -56,7 +57,7 @@ export default {
 		loadExperiments: function() {
 			var that = this;
 			this.$api.get('/experiments').then(resp => {
-				that.experiments = resp.data.data
+				that.$root.experiments = resp.data.data
 			})
 		},
 		loadExposuresSummary: function() {

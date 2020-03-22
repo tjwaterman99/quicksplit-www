@@ -114,7 +114,8 @@ var vm = new Vue({
   data: {
     user: undefined,
     environment: "production",
-    plans: []
+    plans: [],
+    experiments: []
   },
   computed: {
     loggedIn: function() {

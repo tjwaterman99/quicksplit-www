@@ -2,6 +2,7 @@
 h1 Report for {{ report.experiment_name }}
 	h2 Stat sig: {{ report.fields.significant }}
 	h2 Subjects: {{ report.fields.subjects }}
+	pre.text-small {{ report.fields.summary }}
 </template>
 
 <script>
@@ -21,5 +22,7 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped=true>
+.text-small
+	font-size: 0.4em !important
 </style>
