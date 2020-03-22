@@ -71,14 +71,28 @@ export default {
 		this.$on('toggle-active', (experiment) => {
 			var that = this;
 			var route
+			var title
+			var message
+			var variant
 			if (experiment.active) {
 				route = '/deactivate'
+				title = "Stopped experiment"
+				message = `Experiment "${experiment.name}" can no longer receive new data.`
+				variant = "warning"
 			} else {
 				route = '/activate'
+				title = "Started experiment"
+				message = `Experiment "${experiment.name}" can now start receiving new data.`
+				variant = "success"
 			}
+
 			this.$api.post(route, {experiment: experiment.name}).then( resp => {
 				if (resp.data.status_code == 200) {
 					that.loadExperiments()
+					that.$root.$bvToast.toast(message, {
+						title: title,
+						variant: variant
+					})
 				}
 			})
 		})
