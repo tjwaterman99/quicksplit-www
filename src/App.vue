@@ -14,7 +14,6 @@
 	div(v-else)
 		navbar
 		router-view
-
 </template>
 
 <script>

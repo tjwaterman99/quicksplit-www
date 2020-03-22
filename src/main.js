@@ -8,6 +8,7 @@ import Dashboard from './routes/Dashboard.vue'
 import DashboardAccount from './routes/DashboardAccount.vue'
 import DashboardLogs from './routes/DashboardLogs.vue'
 import DashboardReports  from './routes/DashboardReports.vue'
+import ReportItem from './routes/ReportItem.vue'
 import Home from './routes/Home.vue'
 import Pricing from './routes/Pricing.vue'
 import LogIn from './routes/LogIn.vue'
@@ -45,7 +46,12 @@ var routes = [
   },
   {
     path: '/dashboard/reports',
-    component: DashboardReports
+    component: DashboardReports,
+  },
+  {
+    path: '/dashboard/reports/:report_id',
+    component: ReportItem,
+    name: 'report-item'
   },
   {
     path: '/pricing',

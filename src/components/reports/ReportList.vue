@@ -5,7 +5,7 @@ b-list-group
 		span {{ report.ran_at }}
 		span {{ report.fields.significant }}
 		span {{ report.fields.subjects }}
-
+		b-button(:to='{name: "report-item", params: {report_id: report.id}}') View report
 </template>
 
 <script>
