@@ -18,7 +18,6 @@
 					b-nav-item(@click="logOut").mr-lg-2 Log Out
 					b-nav-item.mr-lg-2.text-primary(to="/dashboard") Dashboard
 						b-icon-arrow-right
-
 </template>
 
 <script>
@@ -26,8 +25,13 @@ export default {
 	name: "Navbar",
 	methods: {
 		logOut: function() {
+			var that = this;
 			this.$api.delete("/sessions").then( () => {
-				this.$root.user = undefined
+				that.$root.user = undefined
+				that.$root.$bvToast.toast("You were successfully logged out.", {
+					title: "Logged out",
+					variant: "info"
+				})
 			})
 		}
 	}
