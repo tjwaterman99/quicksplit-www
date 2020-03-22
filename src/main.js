@@ -14,7 +14,14 @@ import Pricing from './routes/Pricing.vue'
 import Support from './routes/Support.vue'
 import LogIn from './routes/LogIn.vue'
 import Register from './routes/Register.vue'
+
 import Docs from './routes/Docs.vue'
+import DocsApiTokens from './routes/docs/ApiTokens'
+import DocsCreateExperiment from './routes/docs/CreateExperiment'
+import DocsHowItWorks from './routes/docs/HowItWorks'
+import DocsLogging from './routes/docs/Logging'
+import DocsReports from './routes/docs/Reports'
+
 import Create from './routes/Create.vue'
 import CreateExperiment from './components/forms/CreateExperiment.vue'
 import CreateReport from './components/forms/CreateReport.vue'
@@ -102,6 +109,26 @@ var routes = [
   {
     path: '/docs',
     component: Docs
+  },
+  {
+    path: '/docs/how-it-works',
+    component: DocsHowItWorks
+  },
+  {
+    path: '/docs/api-tokens',
+    component: DocsApiTokens
+  },
+  {
+    path: '/docs/create-experiment',
+    component: DocsCreateExperiment
+  },
+  {
+    path: '/docs/logging',
+    component: DocsLogging
+  },
+  {
+    path: '/docs/reports',
+    component: DocsReports
   }
 ]
 
