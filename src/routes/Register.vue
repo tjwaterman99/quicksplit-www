@@ -41,6 +41,7 @@ export default {
 				email: this.form.email,
 				password: this.form.password
 			}).then( (resp) => {
+        this.$gtag.event('conversion', {send_to:  'AW-861254232/f6wNCL-oj8sBENjk1poD'})
 				this.$root.user = resp.data.data
 				that.$router.push('/')
 			}).catch( (error) => {

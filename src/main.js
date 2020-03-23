@@ -158,7 +158,14 @@ var router = new VueRouter({routes, mode: "history"})
 var api = new Client(process.env.VUE_APP_API_URL)
 var stripe_public_key = process.env.VUE_APP_STRIPE_PUBLIC_KEY
 
-Vue.use(VueGtag, {config: {id: 'UA-159048690-1'}}, router)
+Vue.use(VueGtag, {
+    config: {id: 'UA-159048690-1'},
+    includes: [
+      {id: 'AW-861254232'}
+    ]
+  },
+  router
+)
 
 Vue.config.productionTip = false
 Vue.prototype.$stripe_public_key = stripe_public_key

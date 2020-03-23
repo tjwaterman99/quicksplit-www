@@ -95,7 +95,10 @@ export default {
 				return '/register'
 			}
 		}
-	}
+	},
+  created: function() {
+    this.$gtag.event('conversion', {send_to:  'AW-861254232/FQ-WCN_0gcYBENjk1poD'})
+  }
 }
 </script>
 
