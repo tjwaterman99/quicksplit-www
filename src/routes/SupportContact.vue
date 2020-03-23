@@ -63,7 +63,7 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped=true>
 li
 	list-style: none
 </style>

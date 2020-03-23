@@ -29,7 +29,7 @@
 				.col-md-4
 					how-it-works-item(header="Get results via dashboard or API", :imageSource="get_results")
 
-	.container-fluid.bg-light.section.testimonial
+	.container-fluid.bg-light.section.testimonial(v-if="false")
 		.container
 			.row
 				.col-lg-6.offset-lg-3
@@ -59,9 +59,9 @@
 				.container
 					.row
 						.col-sm-12.col-md-3.offset-md-3.mb-2
-							b-btn(variant="primary" block) Create an experiment
+							b-btn(variant="primary" block to="/create/experiment") Create an experiment
 						.col-sm-12.col-md-3.mb-2
-							b-btn(variant="outline-primary" block) Read the docs
+							b-btn(variant="outline-primary" block to="/docs") Read the docs
 
 </template>
 
