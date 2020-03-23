@@ -41,27 +41,21 @@ export default {
     },
     exposures: function() {
       var result = []
-      this.days.forEach( day => {
-        this.summaries.forEach( summary =>  {
-          if (summary.day == day) {
-            result.push(summary.exposures)
-          } else {
-            result.push(0)
-          }
-        })
+      var _exposures = {}
+      this.summaries.forEach( (s) => _exposures[s.day] = s.exposures)
+      this.days.forEach(day => {
+        var d = _exposures[day]
+        result.push(d || 0)
       })
       return result
     },
     conversions: function() {
       var result = []
-      this.days.forEach( day => {
-        this.summaries.forEach( summary =>  {
-          if (summary.day == day) {
-            result.push(summary.conversions)
-          } else {
-            result.push(0)
-          }
-        })
+      var _conversions = {}
+      this.summaries.forEach( (s) => _conversions[s.day] = s.conversions)
+      this.days.forEach(day => {
+        var d = _conversions[day]
+        result.push(d || 0)
       })
       return result
     },
