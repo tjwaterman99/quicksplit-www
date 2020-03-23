@@ -12,6 +12,8 @@ import ReportItem from './routes/ReportItem.vue'
 import Home from './routes/Home.vue'
 import Pricing from './routes/Pricing.vue'
 
+import NotFound404 from './routes/errors/NotFound404.vue'
+
 import Support from './routes/Support.vue'
 import SupportContact from './routes/SupportContact.vue'
 import SupportFaq from './routes/SupportFaq.vue'
@@ -144,6 +146,10 @@ var routes = [
   {
     path: '/docs/reports',
     component: DocsReports
+  },
+  {
+    path: '*',
+    component: NotFound404
   }
 ]
 
