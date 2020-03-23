@@ -11,7 +11,11 @@ import DashboardReports  from './routes/DashboardReports.vue'
 import ReportItem from './routes/ReportItem.vue'
 import Home from './routes/Home.vue'
 import Pricing from './routes/Pricing.vue'
+
 import Support from './routes/Support.vue'
+import SupportContact from './routes/SupportContact.vue'
+import SupportFaq from './routes/SupportFaq.vue'
+
 import LogIn from './routes/LogIn.vue'
 import Register from './routes/Register.vue'
 
@@ -42,7 +46,18 @@ var routes = [
   },
   {
     path: '/support',
-    component: Support
+    component: Support,
+  },
+  {
+    path: '/support/contact',
+    component: SupportContact,
+    meta: {
+      focused: true
+    }
+  },
+  {
+    path: '/support/faq',
+    component: SupportFaq
   },
   {
     path: '/dashboard',
