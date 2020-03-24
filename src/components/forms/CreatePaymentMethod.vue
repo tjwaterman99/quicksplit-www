@@ -6,7 +6,7 @@
 				h1.text-center Add payment method
 		.row
 			.col-md-4.offset-md-4
-				form.payment-method
+				form.payment-method(@submit="handleAddPayment")
 					.form-group
 						#card-number
 					.form-row
@@ -15,10 +15,12 @@
 						.col
 							#card-expiry
 					.form-group.mt-3
-						b-button(type="submit" variant="outline-primary" block) Add payment method
-			.row.mt-2(v-if="errors")
-				.col-md-4.offset-md-4
-					b-alert(variant="danger" show).text-center {{ errors }}
+						b-button(type="submit" variant="outline-primary" block)
+							span(v-if="!this.submitted") Add payment method
+							b-spinner(v-else)
+		.row.mt-2(v-if="error")
+			.col-md-4.offset-md-4
+				b-alert(variant="danger" show).text-center {{ error }}
 </template>
 
 <script>
@@ -35,13 +37,16 @@ export default {
 			cardNumberComplete: false,
 			cardExpiryComplete: false,
 			cardCvcComplete: false,
-			paymentSetupIntent: null
+			paymentSetupIntent: null,
+			error: null,
+			submitted: false
 		}
 	},
 	methods: {
 		handleAddPayment: function(event) {
 			event.preventDefault()
 			var that = this;
+			that.submitted = true;
 			stripe.confirmCardSetup(
 				that.paymentSetupIntent.client_secret,
 				{
@@ -55,10 +60,14 @@ export default {
 				}
 			).then(function(result) {
 				if (result.error) {
-					console.log(result.error)
+					that.error = result.error.message
+					that.submitted = false
 				} else {
-					console.log("Success!")
-					console.log(result)
+					that.$root.$bvToast.toast("We've added a payment method to your account.", {
+						title: `Created payment method`,
+						variant: "success"
+					})
+					that.$router.push('/dashboard/account')
 				}
 			})
 		}
