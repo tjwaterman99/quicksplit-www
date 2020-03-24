@@ -18,7 +18,14 @@
 				b-form-group(label="Email address")
 					b-form-input(type="email" :placeholder="$root.user.email" disabled)
 
-		b-tab(title="Payments" disabled)
+		b-tab(title="Billing")
+			span.d-flex.my-2
+				h4.flex-fill Payment methods
+				b-button(variant="primary" to="/create/payment-method") Add payment method
+			b-list-group
+				b-list-group-item(v-for="payment_method in $root.user.account.payment_methods" :key="payment_method.id").d-flex
+					span.flex-fill {{ payment_method.stripe_data.data.object.card.brand }} ending in {{ payment_method.stripe_data.data.object.card.last4 }}
+					span Expires: {{ payment_method.stripe_data.data.object.card.exp_month }} / {{ payment_method.stripe_data.data.object.card.exp_year }}
 
 		b-tab(title="Status")
 			div(v-if="status")
@@ -38,7 +45,10 @@ export default {
 	name: "DashboardAccount",
 	data: function() {
 		return {
-			status: {}
+			status: {
+				health: undefined,
+				version: {}
+			}
 		}
 	},
 	components: {

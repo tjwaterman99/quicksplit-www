@@ -1,5 +1,5 @@
 <template lang="pug">
-.login.pt-5
+.create-experiment.pt-5
 	.container
 		.row
 			.col

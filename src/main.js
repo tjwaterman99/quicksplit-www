@@ -32,6 +32,7 @@ import DocsReports from './routes/docs/Reports'
 import Create from './routes/Create.vue'
 import CreateExperiment from './components/forms/CreateExperiment.vue'
 import CreateReport from './components/forms/CreateReport.vue'
+import CreatePaymentMethod from './components/forms/CreatePaymentMethod.vue'
 
 import VueRouter from 'vue-router'
 import HowItWorksItem from './components/how-it-works/HowItWorksItem'
@@ -118,6 +119,13 @@ var routes = [
       {
         path: 'report',
         component: CreateReport,
+        meta: {
+          focused: true
+        }
+      },
+      {
+        path: 'payment-method',
+        component: CreatePaymentMethod,
         meta: {
           focused: true
         }
