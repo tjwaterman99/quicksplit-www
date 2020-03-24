@@ -18,7 +18,13 @@
 				b-form-group(label="Email address")
 					b-form-input(type="email" :placeholder="$root.user.email" disabled)
 
-		b-tab(title="Payments" disabled)
+		b-tab(title="Billing")
+			span.d-flex.my-2
+				h4.flex-fill Payment methods
+				b-button(variant="primary" to="/create/payment-method") Add payment method
+			b-list-group
+				b-list-group-item(v-for="payment_method in $root.user.account.payment_methods" :key="payment_method.id")
+					p {{ payment_method }}
 
 		b-tab(title="Status")
 			div(v-if="status")
