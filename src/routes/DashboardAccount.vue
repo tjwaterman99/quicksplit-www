@@ -56,7 +56,6 @@ export default {
 	},
 	created: function() {
 		var that = this;
-		console.log("DashboardAccount thinks that user is: ", that.$root.user)
 		this.$api.get('/').then(resp => {
 			that.status = resp.data.data
 		})

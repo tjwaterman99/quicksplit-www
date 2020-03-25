@@ -75,40 +75,27 @@ export default {
 						.stopAfter(15 * 1000)
 						.tryEvery(1000)
 						.execute(function () {
-							console.log(`Polling server for payment_method_id: ${payment_method_id}`)
-
 							that.$api.get('/user').then( resp => {
 								resp.received_at = new Date()
-								console.log("Got response: ", resp)
 								for (let payment_method of resp.data.data.account.payment_methods) {
-									console.log(`Comparing ${payment_method.stripe_payment_method_id} to ${payment_method_id}`)
 									if (payment_method.stripe_payment_method_id == payment_method_id) {
-										console.log("Got a match", payment_method.stripe_payment_method_id, payment_method_id)
-										console.log("Updating matched")
 										matched = true
-										console.log("match is now", matched)
-									} else {
-										console.log("Not a match", payment_method.stripe_payment_method_id, payment_method_id)
-										console.log("match is now", matched)
 									}
 								}
 							}).catch( () => {})
-							console.log("Returning matched: ", matched)
 							return matched
 						}
-					).then(value => {
-							console.log("success!", value)
+					).then( () => {
 							that.$root.$bvToast.toast(`Added a new payment method to your account. You can now use that payment method to upgrade.`, {
 								title: `Added payment method`,
 								variant: "success"
 							})
 							that.$root.loadUser().then( (resp) => {
 								that.$root.user = resp.data.data
-								console.log("Payment method thinks user is: ", that.$root.user)
 								that.$router.push('/dashboard/account')
 							})
 						})
-						.catch(err => console.log("Error was:", err))
+						.catch(err => console.log("Couldn't reload user: ", err))
 					}
 				})
 		}
@@ -118,7 +105,7 @@ export default {
 		this.$api.get('/account/payment-setup').then(function(resp) {
 			that.paymentSetupIntent = resp.data.data
 		}).catch(function(error) {
-			console.log(error)
+			console.log("Couldn't load payment setup: ", error)
 		})
 	},
 	mounted: function() {
