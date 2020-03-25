@@ -24,8 +24,8 @@
 				b-button(variant="primary" to="/create/payment-method") Add payment method
 			b-list-group
 				b-list-group-item(v-for="payment_method in $root.user.account.payment_methods" :key="payment_method.id").d-flex
-					span.flex-fill {{ payment_method.stripe_data.data.object.card.brand }} ending in {{ payment_method.stripe_data.data.object.card.last4 }}
-					span Expires: {{ payment_method.stripe_data.data.object.card.exp_month }} / {{ payment_method.stripe_data.data.object.card.exp_year }}
+					span.flex-fill {{ payment_method.stripe_data.card.brand }} ending in {{ payment_method.stripe_data.card.last4 }}
+					span Expires: {{ payment_method.stripe_data.card.exp_month }} / {{ payment_method.stripe_data.card.exp_year }}
 
 		b-tab(title="Status")
 			div(v-if="status")

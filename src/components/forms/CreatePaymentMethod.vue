@@ -24,12 +24,15 @@
 </template>
 
 <script>
+const { PollUntil } = require('poll-until-promise');
+
 // eslint-disable-next-line no-undef
 var stripe = new Stripe(process.env.VUE_APP_STRIPE_PUBLIC_KEY)
 var elements = stripe.elements()
 var cardExpiryElement = elements.create('cardExpiry');
 var cardCvcElement = elements.create('cardCvc');
 var cardNumberElement = elements.create('cardNumber');
+
 export default {
 	name: "Payments",
 	data: function() {
@@ -38,13 +41,14 @@ export default {
 			cardExpiryComplete: false,
 			cardCvcComplete: false,
 			paymentSetupIntent: null,
+			setupIntent: null,
 			error: null,
 			submitted: false
 		}
 	},
 	methods: {
 		handleAddPayment: function(event) {
-			event.preventDefault()
+			event.preventDefault();
 			var that = this;
 			that.submitted = true;
 			stripe.confirmCardSetup(
@@ -63,13 +67,37 @@ export default {
 					that.error = result.error.message
 					that.submitted = false
 				} else {
-					that.$root.$bvToast.toast("We've added a payment method to your account.", {
-						title: `Created payment method`,
-						variant: "success"
-					})
-					that.$router.push('/dashboard/account')
-				}
-			})
+					that.setupIntent = result.setupIntent
+					var payment_method_id = result.setupIntent.payment_method
+					var poll = new PollUntil()
+					var matched = false
+					poll
+						.stopAfter(15 * 1000)
+						.tryEvery(1000)
+						.execute(function () {
+							that.$api.get('/user').then( resp => {
+								resp.received_at = new Date()
+								for (let payment_method of resp.data.data.account.payment_methods) {
+									if (payment_method.stripe_payment_method_id == payment_method_id) {
+										matched = true
+									}
+								}
+							}).catch( () => {})
+							return matched
+						}
+					).then( () => {
+							that.$root.$bvToast.toast(`Added a new payment method to your account. You can now use that payment method to upgrade.`, {
+								title: `Added payment method`,
+								variant: "success"
+							})
+							that.$root.loadUser().then( (resp) => {
+								that.$root.user = resp.data.data
+								that.$router.push('/dashboard/account')
+							})
+						})
+						.catch(err => console.log("Couldn't reload user: ", err))
+					}
+				})
 		}
 	},
 	created: function() {
@@ -77,7 +105,7 @@ export default {
 		this.$api.get('/account/payment-setup').then(function(resp) {
 			that.paymentSetupIntent = resp.data.data
 		}).catch(function(error) {
-			console.log(error)
+			console.log("Couldn't load payment setup: ", error)
 		})
 	},
 	mounted: function() {

@@ -192,6 +192,30 @@ var vm = new Vue({
     loggedIn: function() {
       return !(this.user === undefined)
     }
+  },
+  methods: {
+    loadUser: function() {
+			var that = this
+			return this.$api.get('/user').then(resp => {
+				that.$root.user = resp.data.data
+        console.log("Loaded user")
+        return resp
+			}).catch( () => {
+				that.$root.user = undefined
+			})
+		},
+		loadPlans: function() {
+			var that = this
+			return this.$api.get('/plans').then(resp => {
+				that.$root.plans = resp.data.data
+			}).catch(err => {
+				console.log(err)
+			})
+		}
+  },
+  mounted: function() {
+    this.loadUser();
+    this.loadPlans();
   }
 })
 
