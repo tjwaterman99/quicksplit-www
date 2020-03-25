@@ -1,6 +1,6 @@
 <template lang="pug">
 .dashboard-account
-	b-alert(show v-if="$root.user.account.downgrade_at" variant="danger") Your account is scheduled to downgrade to the {{ $root.user.account.downgrade_plan.name }} plan on {{ $root.user.account.downgrade_at }}. You'll continue to have full access to your plan's features until that date.
+	b-alert(show v-if="$root.user.account.downgrade_at" variant="danger") Your account is scheduled to downgrade to the {{ $root.user.account.downgrade_plan.schedule_name }} {{ $root.user.account.downgrade_plan.name }} plan on {{ $root.user.account.downgrade_at }}. You'll continue to have full access to your plan's features until that date.
 	.d-flex
 		h1.flex-fill Account
 		b-button(variant="primary" @click="$router.push('/pricing')").mt-3.mb-4 Change plan
@@ -30,7 +30,7 @@
 					span.flex-fill
 						span(v-if="$root.user.account.plan.schedule") (billing {{ $root.user.account.plan.schedule.name }})
 					span(v-if="$root.user.account.bill_at") Next bill {{ $root.user.account.bill_at }}
-					span(v-if="$root.user.account.downgrade_at") Downgrading on {{ $root.user.account.downgrade_at }}
+					span(v-else) Downgrading on {{ $root.user.account.downgrade_at }}
 			span.d-flex.mb-2
 				h4.flex-fill Payment methods
 				b-button(variant="primary" to="/create/payment-method") Add payment method

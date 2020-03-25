@@ -34,6 +34,9 @@ import CreateExperiment from './components/forms/CreateExperiment.vue'
 import CreateReport from './components/forms/CreateReport.vue'
 import CreatePaymentMethod from './components/forms/CreatePaymentMethod.vue'
 
+import Change from './routes/Change.vue'
+import ChangePlan from './components/forms/ChangePlan.vue'
+
 import VueRouter from 'vue-router'
 import HowItWorksItem from './components/how-it-works/HowItWorksItem'
 import Client from './client'
@@ -101,6 +104,22 @@ var routes = [
     meta:  {
       focused: true
     }
+  },
+  {
+    path: '/change',
+    component: Change,
+    meta: {
+      focused: true
+    },
+    children: [
+      {
+        path: 'plan',
+        component: ChangePlan,
+        meta: {
+          focused: true
+        }
+      }
+    ]
   },
   {
     path: '/create',
