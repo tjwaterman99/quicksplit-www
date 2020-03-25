@@ -30,7 +30,8 @@
 					span.flex-fill
 						span(v-if="$root.user.account.plan.schedule") (billing {{ $root.user.account.plan.schedule.name }})
 					span(v-if="$root.user.account.bill_at") Next bill {{ $root.user.account.bill_at }}
-					span(v-else) Downgrading on {{ $root.user.account.downgrade_at }}
+					span(v-else-if="$root.user.account.downgrade_at") Downgrading on {{ $root.user.account.downgrade_at }}
+					span(v-else)
 			span.d-flex.mb-2
 				h4.flex-fill Payment methods
 				b-button(variant="primary" to="/create/payment-method") Add payment method
