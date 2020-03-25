@@ -24,12 +24,15 @@
 </template>
 
 <script>
+const { PollUntil } = require('poll-until-promise');
+
 // eslint-disable-next-line no-undef
 var stripe = new Stripe(process.env.VUE_APP_STRIPE_PUBLIC_KEY)
 var elements = stripe.elements()
 var cardExpiryElement = elements.create('cardExpiry');
 var cardCvcElement = elements.create('cardCvc');
 var cardNumberElement = elements.create('cardNumber');
+
 export default {
 	name: "Payments",
 	data: function() {
@@ -38,13 +41,14 @@ export default {
 			cardExpiryComplete: false,
 			cardCvcComplete: false,
 			paymentSetupIntent: null,
+			setupIntent: null,
 			error: null,
 			submitted: false
 		}
 	},
 	methods: {
 		handleAddPayment: function(event) {
-			event.preventDefault()
+			event.preventDefault();
 			var that = this;
 			that.submitted = true;
 			stripe.confirmCardSetup(
@@ -63,13 +67,50 @@ export default {
 					that.error = result.error.message
 					that.submitted = false
 				} else {
-					that.$root.$bvToast.toast("We've added a payment method to your account.", {
-						title: `Created payment method`,
-						variant: "success"
-					})
-					that.$router.push('/dashboard/account')
-				}
-			})
+					that.setupIntent = result.setupIntent
+					var payment_method_id = result.setupIntent.payment_method
+					var poll = new PollUntil()
+					var matched = false
+					poll
+						.stopAfter(15 * 1000)
+						.tryEvery(1000)
+						.execute(function () {
+							console.log(`Polling server for payment_method_id: ${payment_method_id}`)
+
+							that.$api.get('/user').then( resp => {
+								resp.received_at = new Date()
+								console.log("Got response: ", resp)
+								for (let payment_method of resp.data.data.account.payment_methods) {
+									console.log(`Comparing ${payment_method.stripe_payment_method_id} to ${payment_method_id}`)
+									if (payment_method.stripe_payment_method_id == payment_method_id) {
+										console.log("Got a match", payment_method.stripe_payment_method_id, payment_method_id)
+										console.log("Updating matched")
+										matched = true
+										console.log("match is now", matched)
+									} else {
+										console.log("Not a match", payment_method.stripe_payment_method_id, payment_method_id)
+										console.log("match is now", matched)
+									}
+								}
+							}).catch( () => {})
+							console.log("Returning matched: ", matched)
+							return matched
+						}
+					).then(value => {
+							console.log("success!", value)
+							that.$root.$bvToast.toast(`Added a new payment method to your account. You can now use that payment method to upgrade.`, {
+								title: `Added payment method`,
+								variant: "success"
+							})
+							that.$root.loadUser().then( (resp) => {
+								that.$root.user = resp.data.data
+								console.log("Payment method thinks user is: ", that.$root.user)
+								that.$router.push('/dashboard/account')
+							})
+						})
+						.catch(err => console.log("Error was:", err))
+					}
+				})
 		}
 	},
 	created: function() {
