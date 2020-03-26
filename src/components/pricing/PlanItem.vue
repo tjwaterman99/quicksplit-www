@@ -37,7 +37,10 @@ export default {
           result.message = "Contact us"
           result.route = "/support/contact"
           result.query = {}
-        } else if (this.$root.upgradeablePlan.rank < this.plan.rank && this.$root.upgradeablePlan.price_in_cents==this.plan.price_in_cents) {
+        } else if (this.$root.upgradeablePlan.rank < this.plan.rank) {
+          result.message = "Upgrade"
+          result.route = "/change/plan"
+        } else if (this.$root.upgradeablePlan.price_in_cents < this.plan.price_in_cents) {
           result.message = "Upgrade"
           result.route = "/change/plan"
         } else {
