@@ -6,10 +6,7 @@ ul.plan-item.list-group.text-center.p-2
 	li.list-group-item.bg-white.border-0 {{ formatSubjectsPerExperiment(plan) }}
 	li.list-group-item.bg-white.border-0 {{ formatMaxActiveExperiments(plan) }}
 	li.list-group-item.bg-white.border-0
-		b-btn(variant="primary").btn-block.p-2
-			div(v-if="plan.name=='custom'") Contact us
-			div(v-else-if="plan.name=='free'") Start for free
-			div(v-else="plan.name=='free'") Get started
+		b-btn(variant="primary" :to="{path: values.route, query: values.query}").btn-block.p-2 {{ values.message }}
 
 
 </template>
@@ -21,6 +18,46 @@ export default {
 		plan: Object,
 		annual: Boolean
 	},
+  computed: {
+    values: function() {
+      var result = {
+        message: undefined,
+        route: undefined,
+        query: {
+          plan: this.plan.name,
+          annual: this.annual
+        }
+      }
+      if (!this.plan.self_serve) {
+        result.message = "Contact us"
+        result.route = "/support/contact"
+        result.query = {}
+      // Signed up and has a plan
+      } else if (this.$root.loggedIn) {
+        if (this.$root.upgradeablePlan.price_in_cents < this.plan.price_in_cents) {
+          result.message = "Upgrade now"
+          result.route = "/change/plan"
+        } else if (this.$root.upgradeablePlan.price_in_cents == this.plan.price_in_cents) {
+          result.message = "Current plan"
+          result.route = "/change/plan"
+        } else {
+          result.message = "Downgrade"
+          result.route = "/change/plan"
+        }
+      // Defaults for non-signed in accounts
+      } else {
+        if (this.plan.price_in_cents > 0) {
+          result.message = "Get started"
+          result.route = "/register"
+        } else {
+          result.message = "Start for free"
+          result.route = "/register"
+        }
+      }
+
+      return result
+    }
+  },
 	methods: {
 		formatPrice: function(plan) {
 			var price = plan.price_in_cents / 100

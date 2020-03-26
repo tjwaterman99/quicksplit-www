@@ -210,6 +210,13 @@ var vm = new Vue({
   computed: {
     loggedIn: function() {
       return !(this.user === undefined)
+    },
+    upgradeablePlan: function() {
+      if (this.loggedIn) {
+        return this.user.account.downgrade_plan || this.user.account.plan
+      } else {
+        return undefined
+      }
     }
   },
   methods: {
