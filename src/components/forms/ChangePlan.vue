@@ -6,7 +6,7 @@
 				h1.text-center Change plan
 		.row.mt-5
 			.col-md-4.offset-md-4
-				b-form(@submit="createExperiment")
+				b-form(@submit="changePlan")
 					b-form-group(id="name")
 						b-form-select(v-model="selected" :options="plan_options")
 					b-btn(type="submit" variant="outline-primary" block)
@@ -28,28 +28,34 @@ export default {
 			form: {
 				name: null
 			},
-      selected: null,
-      plan_options: [
-        {value: 1, text: "first plan"},
-        {value: 2, text: "second plan"}
-      ],
+			selected: null,
 			submitted: false,
 			errors: null
 		}
 	},
+	computed: {
+		plan_options: function() {
+			return this.$root.plans.map(function(plan) {
+				return {text: `${plan.name} (${plan.schedule_name})`, value: plan}
+			})
+		}
+	},
 	methods: {
-		createExperiment: function(event) {
+		changePlan: function(event) {
 			event.preventDefault()
 			this.submitted=true;
 			var that = this
-			this.$api.post('/experiments', {
-				name: this.form.name
+			this.$api.patch('/account/plan', {
+				name: this.selected.name,
+				schedule_name: this.selected.schedule_name
 			}).then( () => {
-				that.$root.$bvToast.toast(`You can now start logging data to your experiment ${this.form.name}`, {
-					title: `Created experiment`,
-					variant: "success"
+				that.$root.loadUser().then( () => {
+					that.$root.$bvToast.toast(`Your plan  was changed to the ${this.selected.schedule_name} ${this.selected.name} plan`, {
+						title: `Changed plan`,
+						variant: "success"
+					})
+					that.$router.push('/dashboard/account')
 				})
-				that.$router.push('/dashboard')
 			}).catch( (error) => {
 				this.submitted = false
 				that.errors = error.response.data.message

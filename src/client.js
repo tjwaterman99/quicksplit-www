@@ -26,6 +26,10 @@ class Client {
 	delete(route, data) {
 		return this.axios.delete(route, data)
 	}
+
+  patch(route, data) {
+    return this.axios.patch(route, data)
+  }
 }
 
 export default Client

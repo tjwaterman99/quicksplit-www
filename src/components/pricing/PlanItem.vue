@@ -28,17 +28,17 @@ export default {
           annual: this.annual
         }
       }
-      if (!this.plan.self_serve) {
-        result.message = "Contact us"
-        result.route = "/support/contact"
-        result.query = {}
       // Signed up and has a plan
-      } else if (this.$root.loggedIn) {
-        if (this.$root.upgradeablePlan.price_in_cents < this.plan.price_in_cents) {
-          result.message = "Upgrade"
-          result.route = "/change/plan"
-        } else if (this.$root.upgradeablePlan.price_in_cents == this.plan.price_in_cents) {
+      if (this.$root.loggedIn) {
+        if (this.$root.user.account.plan.id == this.plan.id) {
           result.message = "Current plan"
+          result.route = "/change/plan"
+        } else if (!this.plan.self_serve) {
+          result.message = "Contact us"
+          result.route = "/support/contact"
+          result.query = {}
+        } else if (this.$root.upgradeablePlan.rank < this.plan.rank && this.$root.upgradeablePlan.price_in_cents==this.plan.price_in_cents) {
+          result.message = "Upgrade"
           result.route = "/change/plan"
         } else {
           result.message = "Downgrade"
