@@ -35,7 +35,7 @@ export default {
       // Signed up and has a plan
       } else if (this.$root.loggedIn) {
         if (this.$root.upgradeablePlan.price_in_cents < this.plan.price_in_cents) {
-          result.message = "Upgrade now"
+          result.message = "Upgrade"
           result.route = "/change/plan"
         } else if (this.$root.upgradeablePlan.price_in_cents == this.plan.price_in_cents) {
           result.message = "Current plan"
