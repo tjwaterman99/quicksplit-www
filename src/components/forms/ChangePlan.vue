@@ -5,16 +5,18 @@
 			.col
 				h1.text-center Change plan
 		.row.mt-5
-			.col-md-4.offset-md-4
+			.col-lg-4.offset-lg-4
 				b-form(@submit="changePlan")
 					b-form-group(id="name")
-						b-form-select(v-model="selected" :options="plan_options")
+						b-form-select(v-model="form.name" :options="['free', 'developer', 'team']").text-capitalize
+					b-form-checkbox(v-model="form.annual").mb-2 Get 2 months free with annual pricing
 					b-btn(type="submit" variant="outline-primary" block)
 						span(v-if="!this.submitted") Change plan
 						b-spinner(v-else)
 		.row.mt-2(v-if="errors")
 			.col-md-4.offset-md-4
 				b-alert(variant="danger" show).text-center {{ errors }}
+
 </template>
 
 <script>
@@ -26,21 +28,52 @@ export default {
 	data: function() {
 		return {
 			form: {
-				name: null
+				annual: this.default_annual(),
+				name: this.default_name()
 			},
-			selected: null,
 			submitted: false,
 			errors: null
 		}
 	},
 	computed: {
+		selected: function() {
+			var that = this
+			return this.$root.plans.filter(function(plan) {
+				if (plan.name != that.form.name) {
+					return false
+				} else if (that.form.annual) {
+					return plan.schedule_name == "annual"
+				} else {
+					return plan.schedule_name  == "monthly"
+				}
+			})[0]
+		},
 		plan_options: function() {
-			return this.$root.plans.map(function(plan) {
+			var that = this;
+			return this.$root.plans.filter(function(plan) {
+				if (!plan.self_serve) {
+					return false
+				} else if (plan.name == "free") {
+					return true
+				} else if (plan.schedule_name != "annual" && that.form.annual) {
+					return false
+				} else if (plan.schedule_name == "annual" && !that.form.annual) {
+					return false
+				} else {
+					return true
+				}
+			}).map(function(plan) {
 				return {text: `${plan.name} (${plan.schedule_name})`, value: plan}
 			})
 		}
 	},
 	methods: {
+		default_name: function() {
+			return this.$route.query.name
+		},
+		default_annual: function() {
+			return this.$route.query.annual != false
+		},
 		changePlan: function(event) {
 			event.preventDefault()
 			this.submitted=true;

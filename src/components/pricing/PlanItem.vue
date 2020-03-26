@@ -24,7 +24,7 @@ export default {
         message: undefined,
         route: undefined,
         query: {
-          plan: this.plan.name,
+          name: this.plan.name,
           annual: this.annual
         }
       }
@@ -37,11 +37,16 @@ export default {
           result.message = "Contact us"
           result.route = "/support/contact"
           result.query = {}
-        } else if (this.$root.upgradeablePlan.rank < this.plan.rank) {
-          result.message = "Upgrade"
-          result.route = "/change/plan"
-        } else if (this.$root.upgradeablePlan.price_in_cents < this.plan.price_in_cents) {
-          result.message = "Upgrade"
+        } else if (this.$root.upgradeablePlan.rank == this.plan.rank) {
+          if (this.$root.upgradeablePlan.price_in_cents < this.plan.price_in_cents) {
+            result.message = "Upgrade"
+            result.route = "/change/plan"
+          } else {
+            result.message = "Downgrade"
+            result.route = "/change/plan"
+          }
+        } else if (this.$root.upgradeablePlan.rank > this.plan.rank) {
+          result.message = "Downgrade"
           result.route = "/change/plan"
         } else {
           result.message = "Downgrade"

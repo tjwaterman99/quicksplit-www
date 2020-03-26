@@ -1,6 +1,6 @@
 <template lang="pug">
 .dashboard-account
-	b-alert(show v-if="$root.user && $root.user.account.downgrade_at" variant="danger") Your account is scheduled to downgrade to the {{ $root.user.account.downgrade_plan.schedule_name }} {{ $root.user.account.downgrade_plan.name }} plan on {{ $root.user.account.downgrade_at }}. You'll continue to have full access to your plan's features until that date.
+	b-alert(show v-if="$root.user && $root.user.account.downgrade_at" variant="danger") Your account is scheduled to downgrade to the {{ $root.user.account.downgrade_plan.schedule_name }} {{ $root.user.account.downgrade_plan.name }} plan on {{ $root.user.account.downgrade_at }}. You'll continue to have full access to your {{ $root.user.account.plan.schedule_name }} {{ $root.user.account.plan.name }} plan's features until that date.
 	.d-flex
 		h1.flex-fill Account
 		b-button(variant="primary" @click="$router.push('/pricing')").mt-3.mb-4 Change plan
