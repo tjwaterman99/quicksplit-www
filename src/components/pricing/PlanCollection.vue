@@ -31,10 +31,8 @@ export default {
 		sortedPlans: function() {
 			var plans = this.selectedPlans
 			var sorted_plans = plans.sort( (f,s) => {
-				console.log(`First is ${f.name} second is ${s.name}. First is less = ${f.rank < s.rank}`)
 				return f.rank > s.rank
 			})
-			console.log(sorted_plans)
 			return sorted_plans
 		},
 		selectedPlans: function() {
