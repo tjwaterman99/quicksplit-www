@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import VueGtag from "vue-gtag";
+import VueMeta from 'vue-meta'
 
 import "./assets/styles.sass"
 
@@ -44,6 +45,9 @@ import Client from './client'
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(VueRouter)
+Vue.use(VueMeta, {
+  refreshOnceOnNavigation: true
+})
 Vue.component("HowItWorksItem", HowItWorksItem)
 
 var routes = [

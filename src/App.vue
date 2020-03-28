@@ -27,7 +27,14 @@ export default {
 		"Navbar":  Navbar,
 		"DashboardNavbar": DashboardNavbar,
 		"DocsNavbar": DocsNavbar
-	}
+	},
+  metaInfo: {
+    title: 'A/B test any product',
+    titleTemplate: '%s | Quick Split',
+    meta: [
+      {'description': "Quick Split is the simple, easy to use A/B testing service for your products. You can run an A/B test with just two logging calls. Unlimited free plan."}
+    ]
+  }
 }
 </script>
 
