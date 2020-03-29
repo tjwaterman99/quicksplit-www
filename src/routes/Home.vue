@@ -6,14 +6,8 @@
 				.col-md-6.mb-4
 					h1.text-dark Drive your product
 					h5.mb-4 Quick Split is the fastest, easiest way to run A/B tests on any of your products. You can A/B test a new feature in as little as 3 lines of code, without needing a data scientist.
-					.row
-						.col-sm-12.col-md-5.mb-2
-							b-btn(variant="primary" :to="ctaLink" block) Create an experiment
-						.col-sm-12.col-md-6
-							b-btn(variant="outline-primary" to="/docs" block) Read the docs
-				.col-md-6
-					.marquee-image.m-4
-						img(src="../assets/images/homepage-marquee-image.png")
+				.col-md-4.offset-md-1.mt-2
+					register-form(cta="Get started")
 
 	.container-fluid.bg-light.section.how-it-works
 		.container
@@ -72,13 +66,15 @@ import conversions_image from "@/assets/images/how-it-works/log-conversions.png"
 import get_results from "@/assets/images/how-it-works/get-results.png"
 import RoundTop from '@/components/svg/round-top.svg'
 import PlanCollection from '@/components/pricing/PlanCollection'
+import RegisterForm from '@/components/forms/Register'
 
 
 export default {
 	name: "Home",
 	components: {
 		"round-top": RoundTop,
-		"plan-collection": PlanCollection
+		"plan-collection": PlanCollection,
+    "register-form": RegisterForm
 	},
 	data: function() {
 		return {
